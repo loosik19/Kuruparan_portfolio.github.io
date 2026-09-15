@@ -3,40 +3,853 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuruparan Pathmaranjan</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Kuruparan PATHMARANJAN | Portfolio</title>
+
+    <meta name="description"
+          content="Portfolio de Kuruparan PATHMARANJAN, étudiant en BUT Informatique, intéressé par la cybersécurité et le développement d'applications.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #080b12;
+            --bg-secondary: #0e1420;
+            --card: #111827;
+            --text: #f5f7fa;
+            --text-secondary: #9ca3af;
+            --accent: #4f8cff;
+            --accent-light: #72a7ff;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 8%;
+
+            background: rgba(8, 11, 18, 0.85);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-light);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-light);
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        p {
+            color: var(--text-secondary);
+        }
+
+        /* HERO */
+
+        #accueil {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(79,140,255,0.15),
+                    transparent 40%
+                );
+        }
+
+        .hero {
+            max-width: 850px;
+        }
+
+        .hero-small {
+            color: var(--accent-light);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* ABOUT */
+
+        #about {
+            background: var(--bg-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .info-card h3 {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        /* COMPETENCES */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill h3 {
+            margin-bottom: 10px;
+            color: var(--accent-light);
+        }
+
+        /* PROJETS */
+
+        #projets {
+            background: var(--bg-secondary);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .project-number {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .project h3 {
+            margin: 12px 0;
+        }
+
+        .project p {
+            font-size: 0.95rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(79,140,255,0.12);
+            color: var(--accent-light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* OBJECTIFS */
+
+        .timeline {
+            border-left: 2px solid var(--accent);
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+        }
+
+        .timeline-item h3 {
+            color: var(--accent-light);
+            margin-bottom: 8px;
+        }
+
+        .timeline-item strong {
+            color: white;
+        }
+
+        /* CONTACT */
+
+        #contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 45px;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-box a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .about-grid,
+            .skills-grid,
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<nav>
-    <h2>Kuruparan Pathmaranjan</h2>
+<!-- NAVIGATION -->
 
-    <div class="menu">
-        <a href="#apropos">À propos</a>
-        <a href="#competences">Compétences</a>
-        <a href="#projets">Projets</a>
-        <a href="mailto:kuru19082006@gmail.com">Contact</a>
-    </div>
+<nav>
+    <div class="logo">KP.</div>
+
+    <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#objectifs">Objectifs</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
-<section class="hero">
 
-    <div class="texte">
-        <h1>Salut, moi c'est Kuruparan !</h1>
+<!-- ACCUEIL -->
 
-        <p>
-            Étudiant en informatique, passionné par le développement,
-            les réseaux et la cybersécurité.
-        </p>
+<section id="accueil">
 
-        <a class="btn" href="#projets">Mes projets</a>
-    </div>
+    <div class="container">
 
-    <div>
-        <img src="images/photo.jpg" alt="Photo de profil">
+        <div class="hero">
+
+            <div class="hero-small">
+                PORTFOLIO — BUT INFORMATIQUE
+            </div>
+
+            <h1>
+                Kuruparan<br>
+                <span>PATHMARANJAN</span>
+            </h1>
+
+            <h2>
+                Étudiant en BUT Informatique · Futur spécialiste en cybersécurité
+            </h2>
+
+            <p>
+                Passionné par l'informatique, le développement d'applications,
+                la cybersécurité et la protection des données.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projets" class="btn btn-primary">
+                    Découvrir mes projets
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    Me contacter
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
+
+
+<!-- À PROPOS -->
+
+<section id="about">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Qui <span>suis-je ?</span>
+        </h2>
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p>
+                    Je m'appelle <strong>Kuruparan PATHMARANJAN</strong>,
+                    étudiant en 1ʳᵉ année de Bachelor Universitaire de
+                    Technologie (BUT) Informatique.
+                </p>
+
+                <p>
+                    Passionné par le domaine de l'informatique, je développe
+                    mes compétences dans la conception, l'optimisation,
+                    la gestion et l'administration de programmes informatiques.
+                </p>
+
+                <p>
+                    Je porte un intérêt particulier au développement
+                    d'applications répondant aux besoins du quotidien,
+                    ainsi qu'à la cybersécurité et à la protection des données.
+                </p>
+
+                <p>
+                    Mon objectif est de construire de solides compétences
+                    techniques tout en participant à des projets concrets
+                    et innovants.
+                </p>
+
+            </div>
+
+            <div class="info-card">
+
+                <h3>Mon projet professionnel</h3>
+
+                <ul>
+                    <li>🔐 Cybersécurité</li>
+                    <li>💻 Développement d'applications</li>
+                    <li>🛡️ Protection des données</li>
+                    <li>🔬 Recherche en sécurité informatique</li>
+                    <li>🎓 Poursuite d'études jusqu'au doctorat</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMPÉTENCES -->
+
+<section id="competences">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Entre <span>technique</span> et humain
+        </h2>
+
+        <div class="skills-grid">
+
+            <div class="skill">
+                <h3>Apprentissage autonome</h3>
+                <p>
+                    Capacité à rechercher et assimiler de nouvelles
+                    connaissances de manière autonome, notamment en
+                    programmation avec le langage C.
+                </p>
+            </div>
+
+            <div class="skill">
+                <h3>Résolution de problèmes</h3>
+                <p>
+                    Utilisation de la logique et de la créativité afin
+                    d'identifier des solutions efficaces face aux
+                    difficultés techniques.
+                </p>
+            </div>
+
+            <div class="skill">
+                <h3>Gestion de projet</h3>
+                <p>
+                    Planification du travail, organisation des tâches,
+                    suivi de l'avancement et respect des délais.
+                </p>
+            </div>
+
+            <div class="skill">
+                <h3>Travail en équipe</h3>
+                <p>
+                    Communication, répartition des tâches et prise
+                    de décision collective dans les projets de groupe.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJETS -->
+
+<section id="projets">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Mes <span>projets</span>
+        </h2>
+
+        <div class="projects">
+
+            <!-- PROJET 1 -->
+
+            <article class="project">
+
+                <div class="project-number">
+                    SAÉ 01
+                </div>
+
+                <h3>Find My Word</h3>
+
+                <p>
+                    Développement d'un jeu inspiré de Wordle permettant
+                    de deviner un mot de cinq lettres en six essais maximum.
+                </p>
+
+                <p>
+                    Ce projet m'a permis de renforcer mes compétences
+                    en programmation orientée objet, algorithmique,
+                    conditions et comparaison de chaînes de caractères.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">POO</span>
+                    <span class="tag">Algorithmique</span>
+                    <span class="tag">Programmation</span>
+                </div>
+
+            </article>
+
+
+            <!-- PROJET 2 -->
+
+            <article class="project">
+
+                <div class="project-number">
+                    SAÉ 02
+                </div>
+
+                <h3>Gestion de projet</h3>
+
+                <p>
+                    Organisation d'une journée universitaire consacrée
+                    au numérique responsable.
+                </p>
+
+                <p>
+                    Découverte et utilisation de la matrice RACI,
+                    du WBS, du diagramme de Gantt, du budget prévisionnel
+                    et de l'analyse des risques.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">RACI</span>
+                    <span class="tag">WBS</span>
+                    <span class="tag">Gantt</span>
+                    <span class="tag">Gestion de projet</span>
+                </div>
+
+            </article>
+
+
+            <!-- PROJET 3 -->
+
+            <article class="project">
+
+                <div class="project-number">
+                    SAÉ 03
+                </div>
+
+                <h3>Base de données</h3>
+
+                <p>
+                    Conception d'une base de données relationnelle
+                    exploitant des données Open Data concernant
+                    les stations-service françaises et les prix
+                    des carburants.
+                </p>
+
+                <p>
+                    Développement d'un script Python pour transformer
+                    les données CSV et utilisation de Grafana pour
+                    créer des tableaux de bord interactifs.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">CSV</span>
+                    <span class="tag">Grafana</span>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PARCOURS / RAISONNEMENT -->
+
+<section id="parcours">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Du <span>raisonnement</span> à la réalisation
+        </h2>
+
+        <p>
+            J'apprécie particulièrement le fait qu'en informatique,
+            plusieurs approches peuvent mener à un résultat similaire.
+            Chaque développeur possède sa propre manière de réfléchir,
+            d'organiser son code et de résoudre les problèmes.
+        </p>
+
+        <br>
+
+        <p>
+            Mon intérêt pour l'informatique s'est développé à partir
+            de mes choix de spécialités au lycée. J'ai rapidement découvert
+            que j'appréciais particulièrement la programmation et les
+            défis intellectuels qu'elle représente.
+        </p>
+
+        <br>
+
+        <p>
+            L'évolution permanente du secteur informatique me motive
+            également à apprendre continuellement et à découvrir
+            de nouvelles technologies.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CYBERSÉCURITÉ -->
+
+<section id="cyber">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Innovation et <span>vulnérabilités</span>
+        </h2>
+
+        <p>
+            Je m'intéresse à la veille technologique dans le domaine
+            de la cybersécurité et de l'intelligence artificielle,
+            afin de mieux comprendre les évolutions rapides du secteur
+            informatique et leurs impacts sur la sécurité des systèmes.
+        </p>
+
+        <br>
+
+        <p>
+            Les enjeux liés à l'utilisation des intelligences artificielles
+            génératives renforcent mon intérêt pour la cybersécurité.
+            Je souhaite comprendre à la fois les usages et les limites
+            de ces technologies afin de mieux contribuer à la sécurité
+            des systèmes informatiques.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- OBJECTIFS -->
+
+<section id="objectifs">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            De l'ambition à <span>l'action</span>
+        </h2>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <h3>Court terme</h3>
+
+                <p>
+                    Je suis actuellement à la recherche d'une
+                    <strong>alternance</strong> pour la suite de mon BUT.
+                    Je continue à développer mes compétences à travers
+                    mes projets universitaires et personnels.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <h3>Moyen terme</h3>
+
+                <p>
+                    Après l'obtention de mon BUT Informatique, je souhaite
+                    intégrer une école d'ingénieurs spécialisée en
+                    informatique ou en cybersécurité, notamment grâce
+                    à l'alternance.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <h3>Long terme</h3>
+
+                <p>
+                    Je souhaite me spécialiser dans la cybersécurité
+                    afin de contribuer à la protection des systèmes
+                    informatiques et des données sensibles.
+                </p>
+
+                <p>
+                    J'envisage également de poursuivre mes études
+                    jusqu'au doctorat afin de participer à la recherche
+                    et à l'innovation dans ce domaine.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Mes <span>coordonnées</span>
+        </h2>
+
+        <div class="contact-box">
+
+            <p>
+                📧
+                <a href="mailto:KURUPARAN19@OUTLOOK.FR">
+                    KURUPARAN19@OUTLOOK.FR
+                </a>
+            </p>
+
+            <p>
+                📍 Le Bourget
+            </p>
+
+            <p>
+                📱
+                <a href="tel:+33651323708">
+                    +33 6 51 32 37 08
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 Kuruparan PATHMARANJAN — Portfolio
+    </p>
+
+</footer>
 
 </body>
 </html>
